@@ -1,38 +1,108 @@
-/* CSS cho Section */
-ul {
-    list-style-type: none; /* Loại bỏ dấu chấm từ danh sách */
-    padding: 0;
+.container {
+    width: 100%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    background-color: white;
+    color: black;
+   
+}
+
+/* Điều hướng */
+.breadcrumb {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Khoảng cách giữa các item */
-}
-
-li {
-    border: 1px solid #ddd; /* Đường viền xung quanh mỗi item */
-    padding: 20px;
-    border-radius: 8px;
-    width: 200px;
-    text-align: center;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-li img {
-    max-width: 100%; /* Giới hạn kích thước ảnh */
-    border-radius: 8px;
-    height: auto;
+    align-items: center;
+    font-size: 14px;
+    color: gray;
     margin-bottom: 10px;
 }
 
-li p {
-    font-size: 18px;
+.breadcrumb .active {
+    color: #ff6699;
     font-weight: bold;
-    color: #333;
 }
 
-li img:last-child {
-    margin-top: 10px;
-    width: 20px;
-    height: 20px;
+/* Hồ sơ */
+.profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.profile-info {
+    flex: 1;
+   
+}
+
+.subscribers {
+    color: #ff6699;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.share-btn {
+    background-color: #ff6699;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    color: gray;
+}
+
+.tabs .active {
+    color: #ff6699;
+    font-weight: bold;
+    border-bottom: 2px solid #ff6699;
+}
+
+/* Lưới công thức */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    
+}
+
+/* Phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background-color: #ff6699;
+    color: white;
+    border-radius: 5px;
 }

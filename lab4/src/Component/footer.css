@@ -1,0 +1,45 @@
+.footer{
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+.footer .box{
+    margin-top: 40px;
+}
+.box li{
+
+    list-style-type: none;
+    margin-bottom: 10px;
+
+}
+
+.footer .innerLeft .chefify-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+.footer .innerLeft .chefify-box li{
+    margin: 0;
+    margin-left: 10px;
+}
+.footer .innerLeft .search input{
+    width: 250px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    padding: 2px 10px;
+    margin-right: 20px;
+}
+.footer .innerLeft .search  button{
+    background-color: #F34B85;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: 5px 15px;
+    color: white;
+    font-weight: 500;
+}
