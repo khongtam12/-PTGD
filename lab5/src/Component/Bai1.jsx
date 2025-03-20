@@ -1,8 +1,4 @@
 import React,{useReducer, useState} from "react";
-  
-
-
-
 export default function Bai1(){
 
 const initialState={sum:0}

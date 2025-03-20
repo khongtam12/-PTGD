@@ -5,14 +5,21 @@ import avatar from '../assets/avatar.png';
 import share from '../assets/Share fat.png'
 
 export default function Section() {
-    const url = "https://67c83cad0acf98d070858a0d.mockapi.io/lab4/product";
-    const [arr, setArr] = useState([]);
+    // const url = "https://67c83cad0acf98d070858a0d.mockapi.io/lab4/product";
+    // const [arr, setArr] = useState([]);
 
-    useEffect(() => {
-        fetch(url)
-            .then((r) => r.json())
-            .then((data) => setArr(data));
-    }, []);
+    // useEffect(() => {
+    //     fetch(url)
+    //         .then((r) => r.json())
+    //         .then((data) => setArr(data));
+    // }, []);
+    const url="https://67c83cad0acf98d070858a0d.mockapi.io/lab4/product"
+    const [arr,setArr]=useState([])
+    useEffect(()=>{
+        fetch(url.then((r)=>r.json())
+        .then((data)=>setArr(data))
+    );
+    },[])
 
     return (
         <div className="container">

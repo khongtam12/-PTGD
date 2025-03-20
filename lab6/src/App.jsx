@@ -1,24 +1,26 @@
-import { useState } from 'react'
-// import {Routers, Router} from 'react-router-dom'
-import './App.css'
-import Headers from './Component/Header'
-import Footer from './Component/Footer'
-import MenuList from './Component/MenuList'
-import Home from './Home'
-import BookTable from './Component/BookTable'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Headers from './Component/Header';
+// import Footer from './Component/Footer'
+// import MenuList from './Component/MenuList'
+import Home from './Pages/Home';
+import Contact from './Pages/Contact';
+import Menu from './Pages/Menu';
+
 function App() {
-
   return (
-    <>
-    <Headers/>
-    <MenuList/>
-    <BookTable/>
-    <Footer/>
+    <Router>
+      {/* Header xuất hiện trên mọi trang */}
 
-    
-     
-    </>
-  )
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
+      {/* Footer có thể đặt ở đây nếu cần xuất hiện trên mọi trang */}
+      {/* <Footer /> */}
+    </Router>
+  );
 }
 
-export default App
+export default App;
