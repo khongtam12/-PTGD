@@ -1,0 +1,12 @@
+.dataTable thead th {
+    background-color: #f8f9fa; /* Màu xám nhạt */
+    border-bottom: 2px solid #dee2e6 !important;
+    border-top: 2px solid #dee2e6 !important;
+    padding: 12px 8px;
+    font-weight: 600;
+    color: #495057;
+}
+.dataTable tbody tr {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
