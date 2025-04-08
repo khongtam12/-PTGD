@@ -4,43 +4,36 @@ import './Detail.css';
 import DT from 'datatables.net-bs5';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import file from "../assets/File text 1.png";
+import create from "../assets/create.png"
 
 DataTable.use(DT);
 
 function DetailedReport() {
     const [data, setData] = useState([]);
-    const [selectedRows, setSelectedRows] = useState([]); 
 
-   
+
     useEffect(() => {
         fetch("http://localhost:3001/orders")
             .then((res) => res.json())
             .then((data) => setData(data));
     }, []);
 
-    
-    const handleCheckboxChange = (event, id) => {
-        if (event.target.checked) {
-            setSelectedRows((prevSelected) => [...prevSelected, id]);
-        } else {
-            setSelectedRows((prevSelected) => prevSelected.filter(item => item !== id));
-        }
-    };
+
+
 
     const columns = [
         {
-            title: '',
-            data: null, 
+            title: '<input type="checkbox" class="header-checkbox" />',
+            data: null,
             className: 'h-10  w-10',
-            orderable: false, 
+            orderable: false,
             render: (data, type, row) => {
-                
+
                 return `
           <input
             type="checkbox"
             class="row-checkbox"
-            data-id="${row.id}"
-            ${selectedRows.includes(row.id) ? 'checked' : ''}
+           }
           />
         `;
             }
@@ -77,29 +70,21 @@ function DetailedReport() {
                 return `<span class="${statusClass}">${data}</span>`;
             }
         },
-        { title: 'Total Amount', data: 'totalAmount', className: 'h-10' }
+        { title: 'Total Amount', data: 'totalAmount', className: 'h-10' },
+        {
+            title: '',
+            data: null,
+            className: 'h-10  w-10',
+            orderable: false,
+            render: () => {
+                return `<img src="${create}" alt="edit" style="width: 20px; cursor: pointer;" />`;
+            }
+        }
     ];
 
-    useEffect(() => {
-        const handleCheckboxClick = (e) => {
-            const checkbox = e.target;
-            if (checkbox.classList.contains('row-checkbox')) {
-                const id = parseInt(checkbox.getAttribute('data-id'), 10);
-                handleCheckboxChange({ target: { checked: checkbox.checked } }, id);
-            }
-        };
 
-        const table = document.querySelector('.dataTable');
-        if (table) {
-            table.addEventListener('click', handleCheckboxClick);
-        }
 
-        return () => {
-            if (table) {
-                table.removeEventListener('click', handleCheckboxClick);
-            }
-        };
-    }, [data, selectedRows]);
+
 
     return (
         <div>
