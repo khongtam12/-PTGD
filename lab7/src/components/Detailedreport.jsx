@@ -25,7 +25,6 @@ function DetailedReport() {
     });
     const [select, setSelect] = useState(null);
 
-    // Fetch data on mount
     useEffect(() => {
         fetch("http://localhost:3001/orders")
             .then(res => res.json())
@@ -64,8 +63,10 @@ useEffect(() => {
         }
     };
 
+   
     document.addEventListener('click', handleClick);
 
+    
     return () => {
         document.removeEventListener('click', handleClick);
     };
@@ -73,6 +74,26 @@ useEffect(() => {
 
   
 
+    const handleSave = (e) => {
+        e.preventDefault();
+        if (select) {
+            
+            fetch(`http://localhost:3001/orders/${select.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(res => res.json())
+                .then(updated => {
+                    item.id.toString() === updated.id.toString() ? updated : item
+                    setData(updatedList);
+                    closeModal();
+                })
+                .catch(err => console.error("Update error:", err));
+        } 
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -188,7 +209,7 @@ useEffect(() => {
                 }}
                 contentLabel="Edit or Add User"
             >
-                <form >
+                <form onSubmit={handleSave}>
                     <div className="mb-2">
                         <label>Customer Name</label>
                         <input
