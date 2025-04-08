@@ -92,7 +92,22 @@ useEffect(() => {
                     closeModal();
                 })
                 .catch(err => console.error("Update error:", err));
-        } 
+        } else {
+           
+            fetch(`http://localhost:3001/orders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(res => res.json())
+                .then(newItem => {
+                    setData([...data, newItem]);
+                    closeModal();
+                })
+                .catch(err => console.error("Add error:", err));
+        }
     }
 
     const handleChange = (e) => {
