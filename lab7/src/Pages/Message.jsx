@@ -2,7 +2,7 @@ import React from "react";
 
 import Content from '../components/Content'
 
-export default function Teams(){
+export default function Messages(){
     return(
     
      

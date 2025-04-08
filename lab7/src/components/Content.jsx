@@ -4,7 +4,7 @@ import DetailedRepor from "./Detailedreport";
 function Content () {
     return (  
         <div>
-            <Overview/>
+           
             <DetailedRepor/>
         </div>
     );

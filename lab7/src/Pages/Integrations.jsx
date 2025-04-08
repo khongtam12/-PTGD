@@ -1,8 +1,14 @@
 import React from "react";
+
+import Content from '../components/Content'
 export default function Integrations(){
     return(
-        <div>
-            
-        </div>
+     
+  <div className="content">
+    <Content/>
+
+  </div>
+ 
+
     )
 }
