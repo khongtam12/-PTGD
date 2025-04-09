@@ -42,7 +42,7 @@ function Menu() {
             <div className="mt-20 text-center bg-blue-100 h-[300px] items-center w-[200px] p-4 rounded-lg justify-center flex flex-col">
                 <img src={Group} alt="update" className="mx-auto" />
                 <h2 className="font-bold mb-2">V2.0 is available</h2>
-                <button className="text-blue-300 border rounded-lg w-45 h-8 bg-white">Try now</button>
+                <button className="text-blue-300 border rounded-lg w-45 h-8 bg-white !rounded-lg !text-blue-300 !border-blue-300">Try now</button>
             </div>
         </div>
     );

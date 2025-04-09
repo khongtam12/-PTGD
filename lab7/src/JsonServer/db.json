@@ -10,7 +10,7 @@
   "orders": [
     {
       "id": "1",
-      "customerName": "Nguyễn Văn B",
+      "customerName": "Nguyễn Văn A",
       "company": "ABC LLC",
       "status": "Completed",
       "totalAmount": 1520000,
@@ -135,6 +135,14 @@
       "orderDate": "2025-04-19",
       "status": "New",
       "totalAmount": "1000000"
+    },
+    {
+      "id": "1c97",
+      "customerName": "Nguyễn Văn K",
+      "company": "DCB",
+      "orderDate": "2025-04-04",
+      "status": "New",
+      "totalAmount": "100000"
     }
   ]
 }
