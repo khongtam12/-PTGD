@@ -40,7 +40,7 @@ function Overview() {
     
     return (
         <div>
-            <h3 className="flex gap-2  font-bold mb-4"><img src={squa} alt="" />Overview</h3>
+            <h3 className="flex gap-2  font-bold mb-4 !font-bold"><img src={squa} alt="" />Overview</h3>
             <div className="flex gap-4 ">
                 <div className="flex border rounded-lg p-4 w-[350px] h-[180px] bg-pink-100">
                     <div className="pr-15" >

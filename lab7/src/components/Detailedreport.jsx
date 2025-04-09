@@ -171,7 +171,7 @@ useEffect(() => {
     return (
         <div>
             <div className="flex justify-between mb-2 mt-8 items-center">
-                <h3 className="flex gap-2 font-bold rounded-lg">
+                <h3 className="flex gap-2 font-bold rounded-lg items-center !font-bold">
                     <img src={file} alt="" className="w-12 h-12" />Detailed report
                 </h3>
                 <div className="flex gap-4 items-center">

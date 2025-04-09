@@ -8,7 +8,7 @@ import search from "../assets/Search.png"
 function Header() {
     return (
         <div className=" flex justify-between items-center w-full ">
-            <h2 className="text-4xl font-bold text-pink-600">Dashboard</h2>
+            <h2 className="text-4xl font-bold text-pink-600 !text-pink-600 !font-bold">Dashboard</h2>
             <div className="flex gap-4 pr-4">
                 <div className="relative">
                     <input
