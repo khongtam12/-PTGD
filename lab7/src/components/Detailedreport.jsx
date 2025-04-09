@@ -87,7 +87,9 @@ useEffect(() => {
             })
                 .then(res => res.json())
                 .then(updated => {
-                    item.id.toString() === updated.id.toString() ? updated : item
+                    const updatedList = data.map(item =>
+                        item.id.toString() === updated.id.toString() ? updated : item
+                    );
                     setData(updatedList);
                     closeModal();
                 })
