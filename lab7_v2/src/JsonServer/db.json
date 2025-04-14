@@ -14,7 +14,8 @@
       "company": "ABC LLC",
       "status": "Completed",
       "totalAmount": 1520000,
-      "orderDate": "2025-04-01"
+      "orderDate": "2025-04-01",
+      "img": "/Avatar (2).png"
     },
     {
       "id": "2",
@@ -22,7 +23,8 @@
       "company": "XYZ Joint Stock Company",
       "status": "New",
       "totalAmount": 2180000,
-      "orderDate": "2025-04-02"
+      "orderDate": "2025-04-02",
+      "img": "/Avatar (2).png"
     },
     {
       "id": "3",
@@ -30,7 +32,8 @@
       "company": "Startup ZZZ",
       "status": "In Progress",
       "totalAmount": 0,
-      "orderDate": "2025-04-02"
+      "orderDate": "2025-04-02",
+      "img": "/Avatar (3).png"
     },
     {
       "id": "4",
@@ -38,7 +41,8 @@
       "company": "DEF LLC",
       "status": "Completed",
       "totalAmount": 1200000,
-      "orderDate": "2025-04-03"
+      "orderDate": "2025-04-03",
+      "img": "/Avatar (3).png"
     },
     {
       "id": "5",
@@ -46,7 +50,8 @@
       "company": "GHI Joint Stock Company",
       "status": "New",
       "totalAmount": 2000000,
-      "orderDate": "2025-04-03"
+      "orderDate": "2025-04-03",
+      "img": "/Avatar (2).png"
     },
     {
       "id": "6",
@@ -54,7 +59,8 @@
       "company": "JKL LLC",
       "status": "Completed",
       "totalAmount": 3500000,
-      "orderDate": "2025-04-03"
+      "orderDate": "2025-04-03",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "7",
@@ -62,7 +68,8 @@
       "company": "MNO Joint Stock Company",
       "status": "New",
       "totalAmount": 1800000,
-      "orderDate": "2025-04-04"
+      "orderDate": "2025-04-04",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "8",
@@ -70,7 +77,8 @@
       "company": "PQR LLC",
       "status": "In Progress",
       "totalAmount": 0,
-      "orderDate": "2025-04-04"
+      "orderDate": "2025-04-04",
+      "img": "/Avatar (2).png"
     },
     {
       "id": "9",
@@ -78,7 +86,8 @@
       "company": "Startup STU",
       "status": "Completed",
       "totalAmount": 1700000,
-      "orderDate": "2025-04-05"
+      "orderDate": "2025-04-05",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "10",
@@ -86,7 +95,8 @@
       "company": "VWX Joint Stock Company",
       "status": "New",
       "totalAmount": 2200000,
-      "orderDate": "2025-04-05"
+      "orderDate": "2025-04-05",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "11",
@@ -94,7 +104,8 @@
       "company": "YZA LLC",
       "status": "Completed",
       "totalAmount": 2400000,
-      "orderDate": "2025-04-06"
+      "orderDate": "2025-04-06",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "12",
@@ -102,7 +113,8 @@
       "company": "BCD Joint Stock Company",
       "status": "New",
       "totalAmount": 1900000,
-      "orderDate": "2025-04-06"
+      "orderDate": "2025-04-06",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "13",
@@ -110,7 +122,8 @@
       "company": "DEF Startup",
       "status": "In Progress",
       "totalAmount": 0,
-      "orderDate": "2025-04-07"
+      "orderDate": "2025-04-07",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "14",
@@ -118,7 +131,8 @@
       "company": "FGH LLC",
       "status": "Completed",
       "totalAmount": 1500000,
-      "orderDate": "2025-04-07"
+      "orderDate": "2025-04-07",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "6339",
@@ -126,7 +140,8 @@
       "company": "DCB",
       "orderDate": "2025-04-18",
       "status": "New",
-      "totalAmount": "1000000"
+      "totalAmount": "1000000",
+      "img": "/Avatar (2).png"
     },
     {
       "id": "e6da",
@@ -134,7 +149,8 @@
       "company": "DCB",
       "orderDate": "2025-04-19",
       "status": "New",
-      "totalAmount": "1000000"
+      "totalAmount": "1000000",
+      "img": "/Avatar (1).png"
     },
     {
       "id": "1c97",
@@ -142,7 +158,8 @@
       "company": "DCB",
       "orderDate": "2025-04-04",
       "status": "New",
-      "totalAmount": "100000"
+      "totalAmount": "100000",
+      "img": "/Avatar (3).png"
     }
   ]
 }

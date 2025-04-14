@@ -11,7 +11,7 @@ import Modal from 'react-modal';
 
 DataTable.use(DT);
 
-Modal.setAppElement('#root'); 
+Modal.setAppElement('#root');
 
 function DetailedReport() {
     const [data, setData] = useState([]);
@@ -21,8 +21,10 @@ function DetailedReport() {
         company: '',
         orderDate: '',
         status: 'New',
-        totalAmount: ''
+        totalAmount: '',
+        img: '' // ảnh mặc định trong thư mục public
     });
+
     const [select, setSelect] = useState(null);
 
     useEffect(() => {
@@ -31,8 +33,8 @@ function DetailedReport() {
             .then(data => setData(data));
     }, []);
 
-    
-      function openModal() {
+
+    function openModal() {
         setIsOpen(true);
     }
 
@@ -47,11 +49,69 @@ function DetailedReport() {
             totalAmount: ''
         });
     }
+    useEffect(() => {
+        const handleClick = (e) => {
+            const editBtn = e.target.closest('.edit-btn');
+            if (editBtn) {
+                const id = editBtn.getAttribute('data-id');
+                const user = data.find(u => u.id.toString() === id.toString());
+                console.log(user)
+
+                if (user) {
+                    setSelect(user);
+                    setFormData(user);
+                    openModal();
+                }
+            }
+        };
 
 
-  
+        document.addEventListener('click', handleClick);
 
-   
+
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    }, [data]);
+
+
+
+    const handleSave = (e) => {
+        e.preventDefault();
+        if (select) {
+
+            fetch(`http://localhost:3001/orders/${select.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(res => res.json())
+                .then(updated => {
+                    const updatedList = data.map(item =>
+                        item.id.toString() === updated.id.toString() ? updated : item
+                    );
+                    setData(updatedList);
+                    closeModal();
+                })
+                .catch(err => console.error("Update error:", err));
+        }
+    }
+
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        if (name === "img") {
+            if (files && files[0]) {
+                const imageUrl = URL.createObjectURL(files[0]);
+                setFormData(prev => ({ ...prev, img: imageUrl }));
+            } else {
+                setFormData(prev => ({ ...prev, img: value })); // chọn từ dropdown
+            }
+        }
+
+    };
+
 
     const columns = [
         {
@@ -77,7 +137,8 @@ function DetailedReport() {
                 `;
             }
         },
-        
+
+
         { title: 'COMPANY', data: 'company', className: 'h-10' },
         { title: 'ORDER DATE', data: 'orderDate', className: 'h-10' },
         {
@@ -115,7 +176,7 @@ function DetailedReport() {
             render: (data, type, row) =>
                 `<img src="${create}" alt="edit" style="width: 20px; cursor: pointer;" class="edit-btn" data-id="${row.id}" />`
         }
-        
+
     ];
 
     return (
@@ -125,17 +186,17 @@ function DetailedReport() {
                     <img src={file} alt="" className="w-12 h-12" />Detailed report
                 </h3>
                 <div className="flex gap-4 items-center">
-                    <button   className="flex gap-2 items-center border border-pink-400 text-pink-400 rounded-lg px-3 py-2 !border-pink-400 !text-pink-400 !rounded-lg"
+                    <button className="flex gap-2 items-center border border-pink-400 text-pink-400 rounded-lg px-3 py-2 !border-pink-400 !text-pink-400 !rounded-lg"
                     >
                         <img src={Download} alt="" className="w-5 h-5" /> Import
                     </button>
-                    <button   className="flex gap-2 items-center border border-pink-400 text-pink-400 rounded-lg px-3 py-2 !border-pink-400 !text-pink-400 !rounded-lg"
+                    <button className="flex gap-2 items-center border border-pink-400 text-pink-400 rounded-lg px-3 py-2 !border-pink-400 !text-pink-400 !rounded-lg"
                     >
                         <img src={moveup} alt="" className="w-5 h-5" /> Export
                     </button>
                     <button
-                         className="flex gap-2 items-center border border-pink-400 text-pink-400 rounded-lg px-3 py-2 !border-pink-400 !text-pink-400 !rounded-lg"
- 
+                        className="flex gap-2 items-center border border-pink-400 text-pink-400 rounded-lg px-3 py-2 !border-pink-400 !text-pink-400 !rounded-lg"
+
                         onClick={openModal}
                     >
                         Add
@@ -163,7 +224,103 @@ function DetailedReport() {
                 }}
             />
 
-          
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={{
+                    content: {
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        marginRight: '-50%',
+                        transform: 'translate(-50%, -50%)',
+                        minWidth: '400px'
+                    }
+                }}
+                contentLabel="Edit or Add User"
+            >
+                <form onSubmit={handleSave}>
+                    <div className="mb-2">
+                        <label>Customer Name</label>
+                        <input
+                            type="text"
+                            name="customerName"
+                            value={formData.customerName}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <label>Img</label>
+                        <select name="img" onChange={handleChange} className="form-control">
+                            <option value="">-- Default --</option>
+                            <option value="/Avatar (1).png">User 1</option>
+                            <option value="/Avatar (2).png">User 2</option>
+                            <option value="/Avatar (3).png">User 3</option>
+                        </select>
+                        {/* Display selected image */}
+                        {formData.img && (
+                            <div className="mt-2">
+                                <img src={formData.img} alt="Selected User" className="rounded-circle" style={{ width: "30px", height: "30px" }} />
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="mb-2">
+                        <label>Company</label>
+                        <input
+                            type="text"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <label>Order Date</label>
+                        <input
+                            type="date"
+                            name="orderDate"
+                            value={formData.orderDate}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                        />
+                    </div>
+                    <div className="mb-2">
+                        <label>Status</label>
+                        <select
+                            name="status"
+                            value={formData.status}
+                            onChange={handleChange}
+                            className="form-control"
+                        >
+                            <option>New</option>
+                            <option>In Progress</option>
+                            <option>Completed</option>
+                            <option>Canceled</option>
+                        </select>
+                    </div>
+                    <div className="mb-2">
+                        <label>Total Amount</label>
+                        <input
+                            type="number"
+                            name="totalAmount"
+                            value={formData.totalAmount}
+                            onChange={handleChange}
+                            className="form-control"
+                            required
+                        />
+                    </div>
+                    <div className="flex justify-end mt-3 gap-2">
+                        <button type="button" onClick={closeModal} className="btn btn-secondary">Cancel</button>
+                        <button type="submit" className="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </Modal>
         </div>
     );
 }
