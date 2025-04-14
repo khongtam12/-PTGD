@@ -97,20 +97,39 @@ function DetailedReport() {
                 })
                 .catch(err => console.error("Update error:", err));
         }
+        else  {
+           
+            fetch(`http://localhost:3001/orders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(res => res.json())
+                .then(newItem => {
+                    setData([...data, newItem]);
+                    closeModal();
+                })
+                .catch(err => console.error("Add error:", err));
+        }
     }
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
+        console.log('Field:', name, 'Value:', value); // Thêm log để debug
         if (name === "img") {
             if (files && files[0]) {
                 const imageUrl = URL.createObjectURL(files[0]);
                 setFormData(prev => ({ ...prev, img: imageUrl }));
             } else {
-                setFormData(prev => ({ ...prev, img: value })); // chọn từ dropdown
+                setFormData(prev => ({ ...prev, img: value }));
             }
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
         }
-
     };
+    
 
 
     const columns = [

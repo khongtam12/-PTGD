@@ -160,6 +160,15 @@
       "status": "New",
       "totalAmount": "100000",
       "img": "/Avatar (3).png"
+    },
+    {
+      "id": "fda6",
+      "customerName": "Nguyễn Văn K",
+      "company": "DCB",
+      "orderDate": "2025-04-11",
+      "status": "New",
+      "totalAmount": "100000",
+      "img": "/Avatar (2).png"
     }
   ]
 }
