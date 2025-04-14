@@ -28,10 +28,10 @@ function Menu() {
                         to={item.path}
                         key={item.label}
                         style={{ textDecoration: 'none' }}
-                        className="
-                            flex items-center text-black gap-2  py-2 px-2 items-start w-full px-1  rounded-lg   ${isActive "
-                            
-                        
+                        className={({ isActive }) =>
+                            `flex items-center gap-2  py-2 px-2 items-start w-full px-1  rounded-lg   ${isActive ? "bg-pink-500 text-white" : "text-black "
+                            }`
+                        }
                     >
                         <img src={item.icon} className="w-6 h-6" />
                         <span className="text-lg ">{item.label}</span>
