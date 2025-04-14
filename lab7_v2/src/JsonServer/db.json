@@ -1,0 +1,148 @@
+{
+  "overview": {
+    "turnover": 92405,
+    "profit": 32218,
+    "newCustomer": 298,
+    "changeTurnover": 5.39,
+    "changeProfit": 5.39,
+    "changeCustomer": 6.84
+  },
+  "orders": [
+    {
+      "id": "1",
+      "customerName": "Nguyễn Văn A",
+      "company": "ABC LLC",
+      "status": "Completed",
+      "totalAmount": 1520000,
+      "orderDate": "2025-04-01"
+    },
+    {
+      "id": "2",
+      "customerName": "Trần Thị B",
+      "company": "XYZ Joint Stock Company",
+      "status": "New",
+      "totalAmount": 2180000,
+      "orderDate": "2025-04-02"
+    },
+    {
+      "id": "3",
+      "customerName": "Phạm Văn C",
+      "company": "Startup ZZZ",
+      "status": "In Progress",
+      "totalAmount": 0,
+      "orderDate": "2025-04-02"
+    },
+    {
+      "id": "4",
+      "customerName": "Lê Quang D",
+      "company": "DEF LLC",
+      "status": "Completed",
+      "totalAmount": 1200000,
+      "orderDate": "2025-04-03"
+    },
+    {
+      "id": "5",
+      "customerName": "Vũ Minh E",
+      "company": "GHI Joint Stock Company",
+      "status": "New",
+      "totalAmount": 2000000,
+      "orderDate": "2025-04-03"
+    },
+    {
+      "id": "6",
+      "customerName": "Nguyễn Thị F",
+      "company": "JKL LLC",
+      "status": "Completed",
+      "totalAmount": 3500000,
+      "orderDate": "2025-04-03"
+    },
+    {
+      "id": "7",
+      "customerName": "Đoàn Thanh G",
+      "company": "MNO Joint Stock Company",
+      "status": "New",
+      "totalAmount": 1800000,
+      "orderDate": "2025-04-04"
+    },
+    {
+      "id": "8",
+      "customerName": "Bùi Tường H",
+      "company": "PQR LLC",
+      "status": "In Progress",
+      "totalAmount": 0,
+      "orderDate": "2025-04-04"
+    },
+    {
+      "id": "9",
+      "customerName": "Hoàng Minh I",
+      "company": "Startup STU",
+      "status": "Completed",
+      "totalAmount": 1700000,
+      "orderDate": "2025-04-05"
+    },
+    {
+      "id": "10",
+      "customerName": "Lê Quang J",
+      "company": "VWX Joint Stock Company",
+      "status": "New",
+      "totalAmount": 2200000,
+      "orderDate": "2025-04-05"
+    },
+    {
+      "id": "11",
+      "customerName": "Trương Hữu K",
+      "company": "YZA LLC",
+      "status": "Completed",
+      "totalAmount": 2400000,
+      "orderDate": "2025-04-06"
+    },
+    {
+      "id": "12",
+      "customerName": "Phan Hoàng L",
+      "company": "BCD Joint Stock Company",
+      "status": "New",
+      "totalAmount": 1900000,
+      "orderDate": "2025-04-06"
+    },
+    {
+      "id": "13",
+      "customerName": "Nguyễn Thị M",
+      "company": "DEF Startup",
+      "status": "In Progress",
+      "totalAmount": 0,
+      "orderDate": "2025-04-07"
+    },
+    {
+      "id": "14",
+      "customerName": "Vũ Trần N",
+      "company": "FGH LLC",
+      "status": "Completed",
+      "totalAmount": 1500000,
+      "orderDate": "2025-04-07"
+    },
+    {
+      "id": "6339",
+      "customerName": "Nguyễn Văn C",
+      "company": "DCB",
+      "orderDate": "2025-04-18",
+      "status": "New",
+      "totalAmount": "1000000"
+    },
+    {
+      "id": "e6da",
+      "customerName": "Nguyễn Văn D",
+      "company": "DCB",
+      "orderDate": "2025-04-19",
+      "status": "New",
+      "totalAmount": "1000000"
+    },
+    {
+      "id": "1c97",
+      "customerName": "Nguyễn Văn K",
+      "company": "DCB",
+      "orderDate": "2025-04-04",
+      "status": "New",
+      "totalAmount": "100000"
+    }
+  ]
+}
