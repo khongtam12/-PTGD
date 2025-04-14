@@ -49,28 +49,72 @@ function DetailedReport() {
     }
 
 
+  
+
    
 
     const columns = [
         {
             title: '<input type="checkbox" class="header-checkbox" />',
-            
+            data: null,
+            orderable: false,
+            className: 'h-10 w-10',
+            render: () => `
+                <input type="checkbox" class="row-checkbox" />
+            `
         },
         {
             title: 'CUSTOMER NAME',
-           
+            data: 'customerName',
+            className: 'h-10',
+            render: (data, type, row) => {
+                const imageUrl = row.img || ''; // Đảm bảo rằng bạn lấy đúng đường dẫn ảnh từ dữ liệu
+                return `
+                    <div class="d-flex justify-content-center align-items-center">
+                        ${imageUrl ? `<img src="${imageUrl}" alt="Customer Image" class="rounded-circle" style="width: 30px; height: 30px; margin-right: 10px;" />` : ''}
+                        <span class="text-center">${data}</span>
+                    </div>
+                `;
+            }
         },
         
-        { title: 'COMPANY',  className: 'h-10' },
-        { title: 'ORDER DATE', className: 'h-10' },
+        { title: 'COMPANY', data: 'company', className: 'h-10' },
+        { title: 'ORDER DATE', data: 'orderDate', className: 'h-10' },
         {
             title: 'STATUS',
-            
+            data: 'status',
+            className: 'h-10',
+            render: (data) => {
+                let statusClass = '';
+                switch (data) {
+                    case 'Completed':
+                        statusClass = 'bg-green-100 text-green-700';
+                        break;
+                    case 'New':
+                        statusClass = 'bg-blue-100 text-blue-700';
+                        break;
+                    case 'In Progress':
+                        statusClass = 'bg-yellow-100 text-yellow-700';
+                        break;
+                    case 'Canceled':
+                        statusClass = 'bg-red-100 text-red-700';
+                        break;
+                    default:
+                        statusClass = 'bg-gray-100 text-gray-500';
+                        break;
+                }
+                return `<span class="${statusClass} rounded-lg p-1">${data}</span>`;
+            }
         },
-        { title: 'TOTAL AMOUNT',  className: 'h-10' },
+        { title: 'TOTAL AMOUNT', data: 'totalAmount', className: 'h-10' },
         {
             title: '',
-            }
+            data: null,
+            orderable: false,
+            className: 'h-10 w-10',
+            render: (data, type, row) =>
+                `<img src="${create}" alt="edit" style="width: 20px; cursor: pointer;" class="edit-btn" data-id="${row.id}" />`
+        }
         
     ];
 
