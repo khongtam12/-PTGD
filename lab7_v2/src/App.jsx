@@ -3,7 +3,7 @@ import './App.css'
 import Header from "./components/Header"
 import Menu from './components/Menu';
 import Overview from './components/Overview'
-
+import DetailedReport from './components/Detailedreport';
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     </div>
     <div className="content">
     <Overview/>
-     
+     <DetailedReport/>
   
     </div>
    
