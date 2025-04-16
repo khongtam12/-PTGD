@@ -20,8 +20,8 @@ function App() {
       {/* <ThemeSwitcher /> */}
       {/* <Auth /> */}
       <hr />
-      <Counter />
-      {/* <TodoList /> */}
+      {/* <Counter /> */}
+      <TodoList />
       {/* <Cart /> */}
       {/* <UserFetcher /> */}
       {/* <EventManager /> */}
