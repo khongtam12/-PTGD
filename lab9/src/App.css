@@ -1,0 +1,29 @@
+/* App.css */
+
+/* Theme sáng (light) */
+body.light {
+  background-color: white;
+  color: black;
+}
+
+/* Theme tối (dark) */
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+.app {
+  text-align: center;
+  padding: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.nav {
+  margin-top: 20px;
+}
