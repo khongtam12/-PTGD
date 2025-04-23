@@ -1,7 +1,9 @@
+// src/App.jsx
+
 import React, { useState, useEffect } from 'react';
+import ProductItem from './components/ProductItem';
 
 function App() {
-  // Khởi tạo state cho sản phẩm từ localStorage nếu có
   const [products, setProducts] = useState(() => {
     const stored = localStorage.getItem("products");
     return stored ? JSON.parse(stored) : [
@@ -11,19 +13,18 @@ function App() {
     ];
   });
 
-  // Trạng thái cho form nhập liệu
   const [newProduct, setNewProduct] = useState({
+    id: '',
     name: '',
     price: '',
     category: '',
     stock: ''
   });
 
-  // Trạng thái cho tìm kiếm và lọc sản phẩm
-  const [searchTerm, setSearchTerm] = useState('');
+  // Thêm state cho searchTerm và filterCategory
+  const [searchTerm, setSearchTerm] = useState('');  // Khai báo searchTerm
   const [filterCategory, setFilterCategory] = useState('');
 
-  // Cập nhật form khi nhập
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct(prev => ({
@@ -32,7 +33,6 @@ function App() {
     }));
   };
 
-  // Hàm thêm sản phẩm mới
   const handleAddProduct = () => {
     if (!newProduct.name || !newProduct.price || !newProduct.category || !newProduct.stock) {
       alert("Vui lòng nhập đầy đủ thông tin.");
@@ -50,25 +50,44 @@ function App() {
     };
 
     updateProducts([...products, productToAdd]);
-    setNewProduct({ name: '', price: '', category: '', stock: '' });
+    setNewProduct({ id: '', name: '', price: '', category: '', stock: '' });
   };
 
-  // Hàm xoá sản phẩm
   const handleDeleteProduct = (id) => {
-    const confirmDelete = confirm("Bạn có chắc chắn muốn xoá sản phẩm này?");
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xoá sản phẩm này?");
     if (!confirmDelete) return;
 
     const updatedProducts = products.filter(product => product.id !== id);
     updateProducts(updatedProducts);
   };
 
-  // Hàm cập nhật và lưu vào localStorage
+  const handleEditProduct = (id) => {
+    const productToEdit = products.find(product => product.id === id);
+    setNewProduct({ ...productToEdit });
+  };
+
+  const handleUpdateProduct = () => {
+    if (!newProduct.name || !newProduct.price || !newProduct.category || !newProduct.stock) {
+      alert("Vui lòng nhập đầy đủ thông tin.");
+      return;
+    }
+
+    const updatedProducts = products.map(product =>
+      product.id === newProduct.id
+        ? { ...product, name: newProduct.name, price: parseInt(newProduct.price), category: newProduct.category, stock: parseInt(newProduct.stock) }
+        : product
+    );
+
+    updateProducts(updatedProducts);
+    setNewProduct({ id: '', name: '', price: '', category: '', stock: '' });
+  };
+
   const updateProducts = (newList) => {
     setProducts(newList);
     localStorage.setItem("products", JSON.stringify(newList));
   };
 
-  // Hàm tìm kiếm sản phẩm theo tên
+  // Cập nhật danh sách sản phẩm sau khi lọc theo searchTerm và filterCategory
   const filteredProducts = products.filter(product => {
     return (
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -76,14 +95,13 @@ function App() {
     );
   });
 
-  // Hiển thị tổng số sản phẩm và tồn kho
   const totalStock = filteredProducts.reduce((sum, p) => sum + p.stock, 0);
 
   return (
     <div style={{ padding: "20px" }}>
       <h1>Quản lý sản phẩm</h1>
 
-      <h3>Thêm sản phẩm mới</h3>
+      <h3>{newProduct.id ? "Chỉnh sửa sản phẩm" : "Thêm sản phẩm mới"}</h3>
       <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
         <input
           type="text"
@@ -113,7 +131,9 @@ function App() {
           value={newProduct.stock}
           onChange={handleChange}
         />
-        <button onClick={handleAddProduct}>Thêm sản phẩm</button>
+        <button onClick={newProduct.id ? handleUpdateProduct : handleAddProduct}>
+          {newProduct.id ? "Cập nhật sản phẩm" : "Thêm sản phẩm"}
+        </button>
       </div>
 
       <h3>Tìm kiếm và lọc sản phẩm</h3>
@@ -121,7 +141,7 @@ function App() {
         type="text"
         placeholder="Tìm sản phẩm theo tên"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => setSearchTerm(e.target.value)}  // Cập nhật searchTerm
         style={{ marginBottom: "10px" }}
       />
       <select
@@ -148,15 +168,12 @@ function App() {
         </thead>
         <tbody>
           {filteredProducts.map(product => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.price.toLocaleString('vi-VN')} đ</td>
-              <td>{product.category}</td>
-              <td>{product.stock}</td>
-              <td>
-                <button onClick={() => handleDeleteProduct(product.id)}>Xoá</button>
-              </td>
-            </tr>
+            <ProductItem
+              key={product.id}
+              product={product}
+              onEdit={handleEditProduct}
+              onDelete={handleDeleteProduct}
+            />
           ))}
         </tbody>
         <tfoot>
