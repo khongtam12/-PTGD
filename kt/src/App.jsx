@@ -145,6 +145,14 @@ function App() {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+  <tr>
+    <td colSpan="5" style={{ fontWeight: "bold", textAlign: "right" }}>
+      Tổng số sản phẩm: {filteredProducts.length} | Tổng tồn kho: {filteredProducts.reduce((sum, p) => sum + p.stock, 0)}
+    </td>
+  </tr>
+</tfoot>
+
       </table>
     </div>
   );
