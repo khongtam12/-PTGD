@@ -21,8 +21,7 @@ function App() {
     stock: ''
   });
 
-  // Thêm state cho searchTerm và filterCategory
-  const [searchTerm, setSearchTerm] = useState('');  // Khai báo searchTerm
+  const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
 
   const handleChange = (e) => {
@@ -87,7 +86,6 @@ function App() {
     localStorage.setItem("products", JSON.stringify(newList));
   };
 
-  // Cập nhật danh sách sản phẩm sau khi lọc theo searchTerm và filterCategory
   const filteredProducts = products.filter(product => {
     return (
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -98,92 +96,109 @@ function App() {
   const totalStock = filteredProducts.reduce((sum, p) => sum + p.stock, 0);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Quản lý sản phẩm</h1>
+    <div className="p-8 max-w-6xl mx-auto bg-white shadow-lg rounded-lg">
+      <h1 className="text-4xl font-semibold mb-8 text-center text-indigo-600">Quản lý sản phẩm</h1>
 
-      <h3>{newProduct.id ? "Chỉnh sửa sản phẩm" : "Thêm sản phẩm mới"}</h3>
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Tên sản phẩm"
-          value={newProduct.name}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="price"
-          placeholder="Giá"
-          value={newProduct.price}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="category"
-          placeholder="Danh mục"
-          value={newProduct.category}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="stock"
-          placeholder="Tồn kho"
-          value={newProduct.stock}
-          onChange={handleChange}
-        />
-        <button onClick={newProduct.id ? handleUpdateProduct : handleAddProduct}>
-          {newProduct.id ? "Cập nhật sản phẩm" : "Thêm sản phẩm"}
-        </button>
+      <div className="bg-gray-100 p-6 rounded-lg shadow-sm mb-8">
+        <h3 className="text-2xl mb-4 text-center text-gray-700">{newProduct.id ? "Chỉnh sửa sản phẩm" : "Thêm sản phẩm mới"}</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <input
+            type="text"
+            name="name"
+            placeholder="Tên sản phẩm"
+            value={newProduct.name}
+            onChange={handleChange}
+            className="p-3 border border-gray-300 rounded-md shadow-sm w-full"
+          />
+          <input
+            type="number"
+            name="price"
+            placeholder="Giá"
+            value={newProduct.price}
+            onChange={handleChange}
+            className="p-3 border border-gray-300 rounded-md shadow-sm w-full"
+          />
+          <input
+            type="text"
+            name="category"
+            placeholder="Danh mục"
+            value={newProduct.category}
+            onChange={handleChange}
+            className="p-3 border border-gray-300 rounded-md shadow-sm w-full"
+          />
+          <input
+            type="number"
+            name="stock"
+            placeholder="Tồn kho"
+            value={newProduct.stock}
+            onChange={handleChange}
+            className="p-3 border border-gray-300 rounded-md shadow-sm w-full"
+          />
+        </div>
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={newProduct.id ? handleUpdateProduct : handleAddProduct}
+            className="bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 transition duration-200"
+          >
+            {newProduct.id ? "Cập nhật sản phẩm" : "Thêm sản phẩm"}
+          </button>
+        </div>
       </div>
 
-      <h3>Tìm kiếm và lọc sản phẩm</h3>
-      <input
-        type="text"
-        placeholder="Tìm sản phẩm theo tên"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}  // Cập nhật searchTerm
-        style={{ marginBottom: "10px" }}
-      />
-      <select
-        value={filterCategory}
-        onChange={(e) => setFilterCategory(e.target.value)}
-        style={{ marginBottom: "10px", marginLeft: "10px" }}
-      >
-        <option value="">Lọc theo danh mục</option>
-        <option value="Thời trang">Thời trang</option>
-        <option value="Công nghệ">Công nghệ</option>
-        <option value="Gia dụng">Gia dụng</option>
-      </select>
+      <div className="bg-gray-50 p-6 rounded-lg shadow-sm mb-8">
+        <h3 className="text-2xl mb-4 text-center text-gray-700">Tìm kiếm và lọc sản phẩm</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input
+            type="text"
+            placeholder="Tìm sản phẩm theo tên"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="p-3 border border-gray-300 rounded-md shadow-sm w-full"
+          />
+          <select
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
+            className="p-3 border border-gray-300 rounded-md shadow-sm w-full"
+          >
+            <option value="">Lọc theo danh mục</option>
+            <option value="Thời trang">Thời trang</option>
+            <option value="Công nghệ">Công nghệ</option>
+            <option value="Gia dụng">Gia dụng</option>
+          </select>
+        </div>
+      </div>
 
-      <h3>Danh sách sản phẩm</h3>
-      <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
-          <tr>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Danh mục</th>
-            <th>Tồn kho</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map(product => (
-            <ProductItem
-              key={product.id}
-              product={product}
-              onEdit={handleEditProduct}
-              onDelete={handleDeleteProduct}
-            />
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan="5" style={{ fontWeight: "bold", textAlign: "right" }}>
-              Tổng số sản phẩm: {filteredProducts.length} | Tổng tồn kho: {totalStock}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+      <div className="overflow-x-auto">
+        <h3 className="text-2xl mb-4 text-center text-gray-700">Danh sách sản phẩm</h3>
+        <table className="w-full table-auto border-collapse shadow-md">
+          <thead className="bg-indigo-600 text-white">
+            <tr>
+              <th className="p-3 text-left">Tên sản phẩm</th>
+              <th className="p-3 text-left">Giá</th>
+              <th className="p-3 text-left">Danh mục</th>
+              <th className="p-3 text-left">Tồn kho</th>
+              <th className="p-3 text-left">Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.map(product => (
+              <ProductItem
+                key={product.id}
+                product={product}
+                onEdit={handleEditProduct}
+                onDelete={handleDeleteProduct}
+              />
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="5" className="p-3 text-right font-semibold">
+                Tổng số sản phẩm: {filteredProducts.length} | Tổng tồn kho: {totalStock}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   );
 }
