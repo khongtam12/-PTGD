@@ -5,6 +5,7 @@ function App() {
     { id: 1, name: "Áo thun", price: 120000, category: "Thời trang", stock: 10 },
     { id: 2, name: "Laptop", price: 15000000, category: "Công nghệ", stock: 5 },
     { id: 3, name: "Máy xay sinh tố", price: 800000, category: "Gia dụng", stock: 15 },
+    { id: 4, name: "Quần jeans", price: 350000, category: "Thời trang", stock: 20 },
   ]);
 
   const [newProduct, setNewProduct] = useState({
@@ -15,6 +16,7 @@ function App() {
   });
 
   const [searchKeyword, setSearchKeyword] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Tất cả');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +43,6 @@ function App() {
     };
 
     setProducts([...products, productToAdd]);
-
     setNewProduct({ name: '', price: '', category: '', stock: '' });
   };
 
@@ -53,9 +54,15 @@ function App() {
     setProducts(updatedProducts);
   };
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchKeyword.toLowerCase())
-  );
+  // Tạo danh sách danh mục duy nhất
+  const categories = ['Tất cả', ...new Set(products.map(p => p.category))];
+
+  // Lọc theo tên + danh mục
+  const filteredProducts = products.filter(product => {
+    const matchName = product.name.toLowerCase().includes(searchKeyword.toLowerCase());
+    const matchCategory = selectedCategory === 'Tất cả' || product.category === selectedCategory;
+    return matchName && matchCategory;
+  });
 
   return (
     <div style={{ padding: "20px" }}>
@@ -94,14 +101,25 @@ function App() {
         <button onClick={handleAddProduct}>Thêm sản phẩm</button>
       </div>
 
-      <h3>Tìm kiếm sản phẩm</h3>
-      <input
-        type="text"
-        placeholder="Nhập tên sản phẩm"
-        value={searchKeyword}
-        onChange={(e) => setSearchKeyword(e.target.value)}
-        style={{ marginBottom: "20px", padding: "5px", width: "300px" }}
-      />
+      <h3>Tìm kiếm và lọc</h3>
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <input
+          type="text"
+          placeholder="Tìm theo tên sản phẩm"
+          value={searchKeyword}
+          onChange={(e) => setSearchKeyword(e.target.value)}
+          style={{ padding: "5px", width: "250px" }}
+        />
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          style={{ padding: "5px" }}
+        >
+          {categories.map((cat, index) => (
+            <option key={index} value={cat}>{cat}</option>
+          ))}
+        </select>
+      </div>
 
       <h3>Danh sách sản phẩm</h3>
       <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
