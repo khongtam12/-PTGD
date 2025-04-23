@@ -45,8 +45,17 @@ function App() {
 
     // Reset form
     setNewProduct({ name: '', price: '', category: '', stock: '' });
-  };
 
+
+    
+  };
+  const handleDeleteProduct = (id) => {
+    const confirmDelete = confirm("Bạn có chắc chắn muốn xoá sản phẩm này?");
+    if (!confirmDelete) return;
+
+    const updatedProducts = products.filter(product => product.id !== id);
+    setProducts(updatedProducts);
+  };
   return (
     <div style={{ padding: "20px" }}>
       <h1>Quản lý sản phẩm</h1>
@@ -103,11 +112,12 @@ function App() {
               <td>{product.category}</td>
               <td>{product.stock}</td>
               <td>
-                <button>Xoá</button> {/* sẽ xử lý ở bước sau */}
+                <button onClick={() => handleDeleteProduct(product.id)}>Xoá</button>
               </td>
             </tr>
           ))}
         </tbody>
+
       </table>
     </div>
   );
