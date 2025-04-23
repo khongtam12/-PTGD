@@ -7,7 +7,6 @@ function App() {
     { id: 3, name: "Máy xay sinh tố", price: 800000, category: "Gia dụng", stock: 15 },
   ]);
 
-  // Trạng thái cho form nhập liệu
   const [newProduct, setNewProduct] = useState({
     name: '',
     price: '',
@@ -15,7 +14,8 @@ function App() {
     stock: ''
   });
 
-  // Cập nhật form khi nhập
+  const [searchKeyword, setSearchKeyword] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewProduct(prev => ({
@@ -24,7 +24,6 @@ function App() {
     }));
   };
 
-  // Hàm thêm sản phẩm mới
   const handleAddProduct = () => {
     if (!newProduct.name || !newProduct.price || !newProduct.category || !newProduct.stock) {
       alert("Vui lòng nhập đầy đủ thông tin.");
@@ -43,12 +42,9 @@ function App() {
 
     setProducts([...products, productToAdd]);
 
-    // Reset form
     setNewProduct({ name: '', price: '', category: '', stock: '' });
-
-
-    
   };
+
   const handleDeleteProduct = (id) => {
     const confirmDelete = confirm("Bạn có chắc chắn muốn xoá sản phẩm này?");
     if (!confirmDelete) return;
@@ -56,6 +52,11 @@ function App() {
     const updatedProducts = products.filter(product => product.id !== id);
     setProducts(updatedProducts);
   };
+
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchKeyword.toLowerCase())
+  );
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Quản lý sản phẩm</h1>
@@ -93,6 +94,15 @@ function App() {
         <button onClick={handleAddProduct}>Thêm sản phẩm</button>
       </div>
 
+      <h3>Tìm kiếm sản phẩm</h3>
+      <input
+        type="text"
+        placeholder="Nhập tên sản phẩm"
+        value={searchKeyword}
+        onChange={(e) => setSearchKeyword(e.target.value)}
+        style={{ marginBottom: "20px", padding: "5px", width: "300px" }}
+      />
+
       <h3>Danh sách sản phẩm</h3>
       <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
@@ -105,7 +115,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{product.price.toLocaleString('vi-VN')} đ</td>
@@ -117,7 +127,6 @@ function App() {
             </tr>
           ))}
         </tbody>
-
       </table>
     </div>
   );
